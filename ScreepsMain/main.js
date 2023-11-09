@@ -23,13 +23,14 @@ module.exports.loop = function () {
         }
         
         var maximumNumberOfHarvesters = 30;
+        var minimumNumberOfHarvesters = 2
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         // console.log(numberOfHarvesters);
         var minimumNumberOfUpgraders = 1;
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         // console.log(numberOfUpgraders);
         
-        if (numberOfHarvesters < 1){
+        if (numberOfHarvesters < minimumNumberOfHarvesters){
             var newName = 'Harvester ' + Game.time;
             // Attempt to spawn the new creep
             if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'harvester', working: false}}))) {
