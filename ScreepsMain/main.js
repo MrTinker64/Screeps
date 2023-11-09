@@ -1,7 +1,5 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
-var roleRepairer = require('role.repairer');
 
 module.exports.loop = function () {
     // clear stale memory
@@ -23,12 +21,6 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        else if (creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
-        else if (creep.memory.role == 'repairer') {
-            roleRepairer.run(creep);
-        }
         
         var maximumNumberOfHarvesters = 30;
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
@@ -36,12 +28,6 @@ module.exports.loop = function () {
         var minimumNumberOfUpgraders = 1;
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         // console.log(numberOfUpgraders);
-        var minimumNumberOfBuilders = 2;
-        var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
-        // console.log(numberOfBuilders);
-        var minimumNumberOfRepairers = 2;
-        var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
-        // console.log(numberOfRepairers);
         
         if (numberOfHarvesters < 1){
             var newName = 'Harvester ' + Game.time;
@@ -68,21 +54,5 @@ module.exports.loop = function () {
                 console.log('Spawned new harvester creep: ' + newName);   
             }
         }
-        // else if (numberOfRepairers < minimumNumberOfRepairers){
-        //     var newName = 'Repairer ' + Game.time;
-        //     // Attempt to spawn the new creep
-        //     if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: 'repairer', working: false}}))) {
-        //         console.log('Spawned new repairer creep: ' + newName);   
-        //     }
-        // }
-        // else if (numberOfBuilders < minimumNumberOfBuilders) {
-        //     var newName = 'Builder ' + Game.time;
-        //     // Attempt to spawn the new creep
-        //     if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'builder', working: false}}))) {
-        //         console.log('Spawned new builder creep: ' + newName);   
-        //     }
-        // }
     }
 };
-
-// for(var name in Game.creeps) {     var creep = Game.creeps[name];     if(creep.memory.role == 'builder') {         creep.memory.role = 'harvester';     } }
