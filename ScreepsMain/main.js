@@ -33,7 +33,7 @@ module.exports.loop = function () {
         var minimumNumberOfUpgraders = 1;
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         // console.log(numberOfUpgraders);
-        var maximumNumberOfUpgradersFromSource = 15;
+        var maximumNumberOfUpgradersFromSource = 5;
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
         
         if (numberOfHarvesters < minimumNumberOfHarvesters){
