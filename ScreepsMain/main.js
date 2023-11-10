@@ -1,5 +1,6 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var roleUpgraderFromSource = require('role.upgraderFromSource');
 
 module.exports.loop = function () {
     // clear stale memory
@@ -21,14 +22,19 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
+        else if (creep.memory.role == 'upgraderFromSource') {
+            roleUpgraderFromSource.run(creep);
+        }
         
-        var maximumNumberOfHarvesters = 30;
+        var maximumNumberOfHarvesters = 15;
         var minimumNumberOfHarvesters = 2
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         // console.log(numberOfHarvesters);
         var minimumNumberOfUpgraders = 1;
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         // console.log(numberOfUpgraders);
+        var maximumNumberOfUpgradersFromSource = 15;
+        var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
         
         if (numberOfHarvesters < minimumNumberOfHarvesters){
             var newName = 'Harvester ' + Game.time;
@@ -53,6 +59,14 @@ module.exports.loop = function () {
             // Attempt to spawn the new creep
             if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'harvester', working: false}}))) {
                 console.log('Spawned new harvester creep: ' + newName);   
+            }
+        }
+        else if (numberOfUpgradersFromSource < maximumNumberOfUpgradersFromSource){
+            var newName = 'UpgraderFromSource ' + Game.time;
+            // console.log('Attempting to spawn a harvester');
+            // Attempt to spawn the new creep
+            if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'upgraderFromSource', working: false}}))) {
+                console.log('Spawned new upgraderFromSource creep: ' + newName);   
             }
         }
     }
