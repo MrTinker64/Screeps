@@ -26,14 +26,14 @@ module.exports.loop = function () {
             roleUpgraderFromSource.run(creep);
         }
         
-        var maximumNumberOfHarvesters = 15;
+        var maximumNumberOfHarvesters = 20;
         var minimumNumberOfHarvesters = 2
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         // console.log(numberOfHarvesters);
         var minimumNumberOfUpgraders = 1;
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         // console.log(numberOfUpgraders);
-        var maximumNumberOfUpgradersFromSource = 5;
+        var maximumNumberOfUpgradersFromSource = 10;
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
         
         if (numberOfHarvesters < minimumNumberOfHarvesters){
