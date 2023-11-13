@@ -1,4 +1,4 @@
-var roleUpgraderFromSource = require('./roles/role.upgraderFromSource');
+var roleUpgraderFromSource = require('role.upgraderFromSource');
 
 module.exports = {
     run: function(creep) {
