@@ -1,7 +1,7 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleUpgraderFromSource = require('role.upgraderFromSource');
-var maxNumberOfCreeps = 30;
+var spawnManager = require('spawnManager');
 
 module.exports.loop = function () {
     // clear stale memory
@@ -26,50 +26,7 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'upgraderFromSource') {
             roleUpgraderFromSource.run(creep);
         }
-
-        if (Game.cpu.getUsed() >= Game.cpu.limit) {
-            maxNumberOfCreeps -= 1;
-        }
-        
-        var maximumNumberOfHarvesters = Math.floor(maxNumberOfCreeps / 2);
-        var minimumNumberOfHarvesters = 2;
-        var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
-        // console.log(numberOfHarvesters);
-        var minimumNumberOfUpgraders = 1;
-        var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
-        // console.log(numberOfUpgraders);
-        var maximumNumberOfUpgradersFromSource = Math.floor(maxNumberOfCreeps / 3);
-        var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
-        
-        if (numberOfHarvesters < minimumNumberOfHarvesters || numberOfHarvesters == undefined){
-            var newName = 'Harvester ' + Game.time;
-            // Attempt to spawn the new creep
-            // console.log('Attempting to spawn creep: ' + newName);   
-            if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'harvester', working: false}}))) {
-                console.log('Spawned new harvester creep: ' + newName);   
-            }
-        }
-        else if (numberOfUpgraders < minimumNumberOfUpgraders || numberOfUpgraders == undefined) {
-            var newName = 'Upgrader ' + Game.time;
-            if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: 'upgrader', working: false}}))) {
-                console.log('Spawned new upgrader creep: ' + newName);   
-            }
-        }
-        else if (numberOfHarvesters < maximumNumberOfHarvesters){
-            var newName = 'Harvester ' + Game.time;
-            // console.log('Attempting to spawn a harvester');
-            // Attempt to spawn the new creep
-            if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'harvester', working: false}}))) {
-                console.log('Spawned new harvester creep: ' + newName);   
-            }
-        }
-        else if (numberOfUpgradersFromSource < maximumNumberOfUpgradersFromSource || numberOfUpgradersFromSource == undefined){
-            var newName = 'UpgraderFromSource ' + Game.time;
-            // console.log('Attempting to spawn a harvester');
-            // Attempt to spawn the new creep
-            if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'upgraderFromSource', working: false}}))) {
-                console.log('Spawned new upgraderFromSource creep: ' + newName);   
-            }
-        }
     }
+
+    spawnManager.manageSpawns();
 };
