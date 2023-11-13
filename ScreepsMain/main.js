@@ -39,16 +39,13 @@ module.exports.loop = function () {
         if (numberOfHarvesters < minimumNumberOfHarvesters){
             var newName = 'Harvester ' + Game.time;
             // Attempt to spawn the new creep
+            // console.log('Attempting to spawn creep: ' + newName);   
             if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'harvester', working: false}}))) {
                 console.log('Spawned new harvester creep: ' + newName);   
             }
         }
         else if (numberOfUpgraders < minimumNumberOfUpgraders) {
             var newName = 'Upgrader ' + Game.time;
-            // console.log('Attempting to spawn an upgrader');
-            // if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: 'upgrader', working: false}}))) {
-            //     console.log('Spawned new upgrader creep: ' + newName);   
-            // }
             if (_.isString(Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: 'upgrader', working: false}}))) {
                 console.log('Spawned new upgrader creep: ' + newName);   
             }
