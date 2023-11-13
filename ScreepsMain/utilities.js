@@ -15,8 +15,8 @@ module.exports = {
             // move towards the spawn
             creep.moveTo(structure);
         }
-        else if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_FULL) {
-            roleUpgraderFromSource.run(creep);
+        if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_FULL) {
+            return ERR_FULL;
         }
     },
 
