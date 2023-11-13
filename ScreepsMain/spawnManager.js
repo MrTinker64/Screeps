@@ -11,8 +11,6 @@ function spawnCreep(role, body, namePrefix) {
 
 module.exports = {
     manageSpawns: function () {
-        console.log('spawnManager got called.');
-
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
