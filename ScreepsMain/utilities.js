@@ -10,14 +10,13 @@ module.exports = {
     },
 
     transferEnergyToStructure: function (creep, structure) {
+        var err = creep.transfer(structure, RESOURCE_ENERGY);
         // try to transfer energy, if the spawn is not in range
-        if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) { //  && creep.memory.building == false
+        if (err == ERR_NOT_IN_RANGE) {
             // move towards the spawn
             creep.moveTo(structure);
         }
-        if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_FULL) {
-            return ERR_FULL;
-        }
+        return err;
     },
 
     checkWorkingState: function (creep) {
