@@ -1,4 +1,4 @@
-var roleUpgrader = require('role.upgrader');
+var roleUpgraderFromSource = require('role.upgraderFromSource');
 
 module.exports = {
     run: function(creep) {
@@ -22,7 +22,7 @@ module.exports = {
             }
             else if (creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_FULL) {
                 // creep.memory.building = true;
-                roleUpgrader.run(creep);
+                roleUpgraderFromSource.run(creep);
             }
         }
         // if creep is supposed to harvest energy from source
