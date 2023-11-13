@@ -1,6 +1,7 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleUpgraderFromSource = require('role.upgraderFromSource');
+var maxNumberOfCreeps = 30;
 
 module.exports.loop = function () {
     // clear stale memory
@@ -25,15 +26,19 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'upgraderFromSource') {
             roleUpgraderFromSource.run(creep);
         }
+
+        if (Game.cpu.getUsed() >= Game.cpu.limit) {
+            maxNumberOfCreeps -= 1;
+        }
         
-        var maximumNumberOfHarvesters = 7;
+        var maximumNumberOfHarvesters = Math.floor(maxNumberOfCreeps / 2);
         var minimumNumberOfHarvesters = 2;
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         // console.log(numberOfHarvesters);
         var minimumNumberOfUpgraders = 1;
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         // console.log(numberOfUpgraders);
-        var maximumNumberOfUpgradersFromSource = 5;
+        var maximumNumberOfUpgradersFromSource = Math.floor(maxNumberOfCreeps / 3);
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
         
         if (numberOfHarvesters < minimumNumberOfHarvesters || numberOfHarvesters == undefined){
