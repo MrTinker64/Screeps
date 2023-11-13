@@ -27,7 +27,7 @@ module.exports.loop = function () {
         }
         
         var maximumNumberOfHarvesters = 7;
-        var minimumNumberOfHarvesters = 2
+        var minimumNumberOfHarvesters = 2;
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         // console.log(numberOfHarvesters);
         var minimumNumberOfUpgraders = 1;
