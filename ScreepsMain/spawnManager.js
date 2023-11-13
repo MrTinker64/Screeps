@@ -1,4 +1,4 @@
-var maxNumberOfCreeps = 20;
+var maxNumberOfCreeps = 21;
 var minimumNumberOfHarvesters = 2;
 var maximumNumberOfHarvesters = Math.floor(maxNumberOfCreeps / 2);
 var minimumNumberOfUpgraders = 1;
