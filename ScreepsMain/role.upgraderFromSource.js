@@ -1,3 +1,5 @@
+var utils = require('utilities');
+
 module.exports = {
     run: function(creep) {
         // if creep is bringing energy to the controller but has no energy left
@@ -13,11 +15,8 @@ module.exports = {
         
         // if creep is supposed to transfer energy to the controller
         if (creep.memory.working == true) {
-            // try to transfer energy, if the controller is not in range
-            if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                // move towards the spawn
-                creep.moveTo(creep.room.controller);
-            }
+            // try to transfer energy
+            utils.transferEnergyToStructure(creep, creep.room.controller);
         }
         // if creep is supposed to harvest energy from source
         else {
