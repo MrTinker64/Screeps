@@ -1,8 +1,8 @@
 var utils = require('utilities');
 
 module.exports = {
+    /** @param {Creep} creep **/
     run: function (creep) {
-        /** @param {Creep} creep **/
         utils.checkWorkingState(creep);
 
         // if creep is supposed to transfer energy to the controller
