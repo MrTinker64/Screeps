@@ -1,8 +1,8 @@
-var maxNumberOfCreeps = 21;
 var minimumNumberOfHarvesters = 2;
-var maximumNumberOfHarvesters = Math.floor(maxNumberOfCreeps / 2);
+var maxNumberOfHarvesters = 10;
 var minimumNumberOfUpgraders = 1;
-var maximumNumberOfUpgradersFromSource = Math.floor(maxNumberOfCreeps / 3);
+var maxNumberOfUpgradersFromSource = 3;
+var maxNumberOfConstructioneers = 4;
 
 /** 
  * @param {string} role, 
@@ -20,16 +20,16 @@ module.exports = {
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
 
-        if (numberOfHarvesters < minimumNumberOfHarvesters) {
+        if (numberOfHarvesters < minNumberOfHarvesters) {
             spawnCreep('harvester', [WORK, CARRY, MOVE, MOVE], 'Harvester');
         }
         else if (numberOfUpgraders < minimumNumberOfUpgraders) {
             spawnCreep('upgrader', [WORK, WORK, CARRY, MOVE], 'Upgrader');
         }
-        else if (numberOfHarvesters < maximumNumberOfHarvesters) {
+        else if (numberOfHarvesters < maxNumberOfHarvesters) {
             spawnCreep('harvester', [WORK, CARRY, MOVE, MOVE], 'Harvester');
         }
-        else if (numberOfUpgradersFromSource < maximumNumberOfUpgradersFromSource) {
+        else if (numberOfUpgradersFromSource < maxNumberOfUpgradersFromSource) {
             spawnCreep('upgraderFromSource', [WORK, CARRY, MOVE, MOVE], 'UpgraderFromSource');
         }
     }
