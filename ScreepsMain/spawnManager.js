@@ -22,19 +22,19 @@ module.exports = {
         var numberOfConstructioneers = _.sum(Game.creeps, (c) => c.memory.role == 'constructioneer');
 
         if (numberOfHarvesters < minNumberOfHarvesters) {
-            spawnCreep('harvester', [WORK, CARRY, MOVE, MOVE], 'Harvester');
+            spawnCreep('harvester', [WORK, WORK, CARRY, MOVE], 'Harvester');
         }
         else if (numberOfUpgraders < minimumNumberOfUpgraders) {
             spawnCreep('upgrader', [WORK, CARRY, MOVE], 'Upgrader');
         }
         else if (numberOfHarvesters < maxNumberOfHarvesters) {
-            spawnCreep('harvester', [WORK, CARRY, MOVE, MOVE], 'Harvester');
+            spawnCreep('harvester', [WORK, WORK, CARRY, MOVE], 'Harvester');
         }
         else if (numberOfUpgradersFromSource < maxNumberOfUpgradersFromSource) {
-            spawnCreep('upgraderFromSource', [WORK, CARRY, MOVE, MOVE], 'UpgraderFromSource');
+            spawnCreep('upgraderFromSource', [WORK, WORK, CARRY, MOVE], 'UpgraderFromSource');
         }
         else if (numberOfConstructioneers < maxNumberOfConstructioneers) {
-            spawnCreep('constructioneer', [WORK, CARRY, MOVE, MOVE], 'Constructioneer');
+            spawnCreep('constructioneer', [WORK, WORK, CARRY, MOVE], 'Constructioneer');
         }
     }
 };
