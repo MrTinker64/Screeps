@@ -2,7 +2,7 @@ var minNumberOfHarvesters = 2;
 var maxNumberOfHarvesters = 12;
 var minimumNumberOfUpgraders = 1;
 var maxNumberOfUpgradersFromSource = 1;
-var maxNumberOfConstructioneers = 14;
+var maxNumberOfConstructioneers = 15;
 
 /** 
  * @param {string} role, 
