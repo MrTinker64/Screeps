@@ -25,7 +25,7 @@ module.exports = {
             spawnCreep('harvester', [WORK, CARRY, MOVE, MOVE], 'Harvester');
         }
         else if (numberOfUpgraders < minimumNumberOfUpgraders) {
-            spawnCreep('upgrader', [WORK, WORK, CARRY, MOVE], 'Upgrader');
+            spawnCreep('upgrader', [WORK, CARRY, MOVE], 'Upgrader');
         }
         else if (numberOfHarvesters < maxNumberOfHarvesters) {
             spawnCreep('harvester', [WORK, CARRY, MOVE, MOVE], 'Harvester');
