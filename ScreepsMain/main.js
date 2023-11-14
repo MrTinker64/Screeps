@@ -1,7 +1,5 @@
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleUpgraderFromSource = require('role.upgraderFromSource');
 var spawnManager = require('spawnManager');
+var rolesManager = require('rolesManager');
 
 module.exports.loop = function () {
     // clear stale memory
@@ -10,23 +8,8 @@ module.exports.loop = function () {
             delete Memory.creeps[name];
         }
     }
-    
-    // for every creep name in Game.creeps
-    for (let name in Game.creeps) {
 
-        // get the creep object
-        var creep = Game.creeps[name];
-
-        if (creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
-        else if (creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-        }
-        else if (creep.memory.role == 'upgraderFromSource') {
-            roleUpgraderFromSource.run(creep);
-        }
-    }
+    rolesManager.handleRoles();
 
     spawnManager.manageSpawns();
 };
