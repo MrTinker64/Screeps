@@ -1,4 +1,5 @@
 module.exports = {
+    /** @param {Creep} creep **/
     getEnergyFromSource: function (creep) {
         // find closest source
         var source = creep.pos.findClosestByPath(FIND_SOURCES);
@@ -9,6 +10,7 @@ module.exports = {
         }
     },
 
+    /** @param {Creep} creep, @param {Structure} structure **/
     transferEnergyToStructure: function (creep, structure) {
         var err = creep.transfer(structure, RESOURCE_ENERGY);
         // try to transfer energy, if the spawn is not in range
@@ -19,6 +21,7 @@ module.exports = {
         return err;
     },
 
+    /** @param {Creep} creep **/
     checkWorkingState: function (creep) {
         // if creep is bringing energy to the controller but has no energy left
         if (creep.memory.working == true && creep.store[RESOURCE_ENERGY] == 0) {

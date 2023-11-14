@@ -2,9 +2,10 @@ var roleUpgraderFromSource = require('role.upgraderFromSource');
 var utils = require('utilities');
 
 module.exports = {
-    run: function(creep) {
+    /** @param {Creep} creep **/
+    run: function (creep) {
         utils.checkWorkingState(creep);
-        
+
         // if creep is supposed to transfer energy to the spawn
         if (creep.memory.working == true) {
             if (utils.transferEnergyToStructure(creep, Game.spawns.Spawn1) == ERR_FULL) {
