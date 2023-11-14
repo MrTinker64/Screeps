@@ -8,20 +8,21 @@ module.exports = {
         // if creep is supposed to build
         if (creep.memory.working == true) {
             // try to build
-            const buildSite = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+            const buildSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
             if (buildSite) {
                 if (creep.build(buildSite) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(buildSite);
+                    creep.moveTo(buildSite, { reusePath: 5 });
                 }
             }
             // if no build sites then repair
             else {
                 var repairTargets = creep.room.find(FIND_STRUCTURES, {
-                    filter: object => object.hits < object.hitsMax
+                    filter: object => object.hits < object.hitsMax * 0.7 && object.structureType != STRUCTURE_WALL
                 });
+                repairTargets.sort((a, b) => a.hits - b.hits);
                 if (repairTargets.length > 0) {
                     if (creep.repair(repairTargets[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(repairTargets[0]);
+                        creep.moveTo(repairTargets[0], { reusePath: 5 });
                     }
                 }
             }

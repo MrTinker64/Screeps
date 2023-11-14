@@ -1,8 +1,8 @@
 var minNumberOfHarvesters = 2;
-var maxNumberOfHarvesters = 8;
+var maxNumberOfHarvesters = 12;
 var minimumNumberOfUpgraders = 1;
 var maxNumberOfUpgradersFromSource = 1;
-var maxNumberOfConstructioneers = 5;
+var maxNumberOfConstructioneers = 8;
 
 /** 
  * @param {string} role, 
@@ -20,21 +20,22 @@ module.exports = {
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
         var numberOfConstructioneers = _.sum(Game.creeps, (c) => c.memory.role == 'constructioneer');
+        var standardBodyParts = [WORK, CARRY, MOVE, MOVE];
 
         if (numberOfHarvesters < minNumberOfHarvesters) {
-            spawnCreep('harvester', [WORK, WORK, CARRY, MOVE], 'Harvester');
+            spawnCreep('harvester', standardBodyParts, 'Harvester');
         }
         else if (numberOfUpgraders < minimumNumberOfUpgraders) {
             spawnCreep('upgrader', [WORK, CARRY, MOVE], 'Upgrader');
         }
         else if (numberOfHarvesters < maxNumberOfHarvesters) {
-            spawnCreep('harvester', [WORK, WORK, CARRY, MOVE], 'Harvester');
+            spawnCreep('harvester', standardBodyParts, 'Harvester');
         }
         else if (numberOfUpgradersFromSource < maxNumberOfUpgradersFromSource) {
-            spawnCreep('upgraderFromSource', [WORK, WORK, CARRY, MOVE], 'UpgraderFromSource');
+            spawnCreep('upgraderFromSource', standardBodyParts, 'UpgraderFromSource');
         }
         else if (numberOfConstructioneers < maxNumberOfConstructioneers) {
-            spawnCreep('constructioneer', [WORK, WORK, CARRY, MOVE], 'Constructioneer');
+            spawnCreep('constructioneer', standardBodyParts, 'Constructioneer');
         }
     }
 };
