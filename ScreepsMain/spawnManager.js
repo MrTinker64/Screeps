@@ -1,4 +1,4 @@
-var minimumNumberOfHarvesters = 2;
+var minNumberOfHarvesters = 2;
 var maxNumberOfHarvesters = 10;
 var minimumNumberOfUpgraders = 1;
 var maxNumberOfUpgradersFromSource = 3;
