@@ -12,7 +12,7 @@ module.exports = {
                 var closestExtension = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: { structureType: STRUCTURE_EXTENSION }
                 });
-                if (extension) {
+                if (closestExtension) {
                     utils.transferEnergyToStructure(creep, closestExtension);
                 }
                 else {
