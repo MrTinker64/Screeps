@@ -9,7 +9,15 @@ module.exports = {
         // if creep is supposed to transfer energy to the spawn
         if (creep.memory.working == true) {
             if (utils.transferEnergyToStructure(creep, Game.spawns.Spawn1) == ERR_FULL) {
-                roleUpgraderFromSource.run(creep);
+                var closestExtension = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                    filter: { structureType: STRUCTURE_EXTENSION }
+                });
+                if (extension) {
+                    utils.transferEnergyToStructure(creep, closestExtension);
+                }
+                else {
+                    roleUpgraderFromSource.run(creep);
+                }
             }
         }
         // if creep is supposed to harvest energy from source
