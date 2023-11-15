@@ -1,6 +1,5 @@
 var roleConstructioneer = require('role.constructioneer');
 var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
 var roleUpgraderFromSource = require('role.upgraderFromSource');
 
 module.exports = {
@@ -13,9 +12,6 @@ module.exports = {
 
             if (creep.memory.role == 'harvester') {
                 roleHarvester.run(creep);
-            }
-            else if (creep.memory.role == 'upgrader') {
-                roleUpgrader.run(creep);
             }
             else if (creep.memory.role == 'upgraderFromSource') {
                 roleUpgraderFromSource.run(creep);
