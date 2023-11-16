@@ -1,4 +1,18 @@
+var pathStyling = true;
+var reusePathTickAmount = 5;
+
+function creepMoveTo(creep, target) {
+    if (pathStyling) {
+        creep.moveTo(structure, { reusePath: reusePathTickAmount, pathStyling: {} });
+    }
+    else {
+        creep.moveTo(structure, { reusePath: reusePathTickAmount });
+    }
+}
+
 module.exports = {
+    pathStyling,
+
     /** @param {Creep} creep **/
     getEnergyFromSource: function (creep) {
         // find closest source
@@ -6,7 +20,7 @@ module.exports = {
         // try to harvest energy, if the source is not in range
         if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
             // move towards the source
-            creep.moveTo(source, { reusePath: 5 });
+            creepMoveTo(creep, source);
         }
     },
 
@@ -16,7 +30,7 @@ module.exports = {
         // try to transfer energy, if the spawn is not in range
         if (err == ERR_NOT_IN_RANGE) {
             // move towards the spawn
-            creep.moveTo(structure, { reusePath: 5 });
+            creepMoveTo(creep, structure);
         }
         return err;
     },
