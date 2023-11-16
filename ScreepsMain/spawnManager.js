@@ -16,7 +16,7 @@ module.exports = {
     manageSpawns: function () {
         var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
         var numberOfUpgradersFromSource = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderFromSource');
-        var standardBodyParts = [WORK, CARRY, MOVE, MOVE];
+        var standardBodyParts = [WORK, WORK, CARRY, MOVE];
 
         if (numberOfHarvesters < minNumberOfHarvesters) {
             spawnCreep('harvester', standardBodyParts, 'Harvester');
