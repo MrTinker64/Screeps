@@ -3,10 +3,10 @@ var reusePathTickAmount = 5;
 
 function creepMoveTo(creep, target) {
     if (pathStyling) {
-        creep.moveTo(structure, { reusePath: reusePathTickAmount, pathStyling: {} });
+        creep.moveTo(target, { reusePath: reusePathTickAmount, pathStyling: {} });
     }
     else {
-        creep.moveTo(structure, { reusePath: reusePathTickAmount });
+        creep.moveTo(target, { reusePath: reusePathTickAmount });
     }
 }
 
